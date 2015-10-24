@@ -1,9 +1,17 @@
+lb:
+   image: eeacms/haproxy
+   ports:
+      - "80:80"
+      - "1936:1936"
+   links:
+      - web
+
 web:
    build: nodedemo
    ports: 
-      - 3000:3000
+      - "80" 
    links:
-      - db:testdb
+      - db:contactdb
 
 db:
    build: mongodbdir

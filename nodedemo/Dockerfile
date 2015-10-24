@@ -5,5 +5,5 @@ WORKDIR	/usr/src/nodedemo
 
 RUN	npm install
 
-EXPOSE	3000
+EXPOSE 80	
 CMD	["npm", "start"]
