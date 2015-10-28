@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var os = require('os');
+var hostn = os.hostname();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,7 +9,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/helloworld', function(req, res) {
-    res.render('helloworld', { title: 'Hello, World!' });
+    res.render('helloworld', { title: 'Hello, World!' ,
+                               hostval: os.hostname()});
 });
 
 router.get('/userlist', function(req, res) {
@@ -15,14 +18,16 @@ router.get('/userlist', function(req, res) {
     var collection = db.get('usercollection');
     collection.find({}, {}, function(e, docs) {
         res.render('userlist', {
-            "userlist" : docs
+            "userlist" : docs,
+            hostval: os.hostname()
         });
     });
 });
 
 /* GET New User page. */
 router.get('/newuser', function(req, res) {
-    res.render('newuser', { title: 'Add New User' });
+    res.render('newuser', { title: 'Add New User', 
+                            hostval: os.hostname()});
 });
 
 /* POST to Add User Service */
