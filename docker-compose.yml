@@ -1,20 +1,27 @@
-lb:
+version: '2'
+
+services:
+  lb:
    image: eeacms/haproxy
    ports:
-      - "80:80"
+      - "80:5000"
       - "1936:1936"
    links:
-      - web
+      - webapp
 
-web:
+  webapp:
    build: nodedemo
-   ports: 
-      - "80" 
+#   expose: 
+#     - 80
+#   ports:
+#      - "80"
    links:
-      - db:contactdb
+      - contactdb
 
-db:
-   build: mongodbdir
+  contactdb:
+   image: mongo
+   volumes:
+      - ./mongodata:/data/db
    expose: 
       - 27017
    
