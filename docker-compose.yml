@@ -1,20 +1,20 @@
 version: '2'
 
 services:
-  lb:
-   image: eeacms/haproxy
-   ports:
-      - "80:5000"
-      - "1936:1936"
-   links:
-      - webapp
+#  lb:
+#   image: eeacms/haproxy
+#   ports:
+#      - "80:5000"
+#      - "1936:1936"
+#   links:
+#      - webapp
 
   webapp:
    build: nodedemo
 #   expose: 
 #     - 80
-#   ports:
-#      - "80"
+   ports:
+      - "80:80"
    links:
       - contactdb
 
